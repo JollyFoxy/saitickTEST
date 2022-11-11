@@ -9,16 +9,11 @@ import static com.codeborne.selenide.Selenide.*;
 public class FirstTest {
 
     private static String baseUrl = "https://idemo.bspb.ru/";
-
     private SelenideElement loginInput = $(By.xpath("//input[@name='username']"));
     private SelenideElement passwordInput = $(By.xpath("//input[@name='password']"));
     private SelenideElement loginBtn = $(By.xpath("//button[@id='login-button']"));
-
     private SelenideElement codeInput = $(By.xpath("//input[@id='otp-code']"));
-
     private SelenideElement codeBtn = $(By.xpath("//button[@id='login-otp-button']"));
-
-    //Переменные для Пашеных потуг
     private SelenideElement overview =$(By.xpath("//a[@id='bank-overview']"));
     private SelenideElement accounts  =$(By.xpath("//a[@id='accounts-index']"));
     private SelenideElement payments  =$(By.xpath("//a[@id='payments-form']"));
@@ -28,31 +23,26 @@ public class FirstTest {
     private SelenideElement externalTraderoom =$(By.xpath("//a[@id='externaltraderoom-index']"));
     private SelenideElement insurance =$(By.xpath("//a[@id='insurance-travel']"));
     private SelenideElement logo =$(By.xpath("//a[@id='logo']"));
-
-    /*  private SelenideElement statementsStatement =$(By.xpath("//a[@id='statements-statement']"));
+    private SelenideElement statementsStatement =$(By.xpath("//a[@id='statements-statement']"));
     private SelenideElement accountsIndex =$(By.xpath("//a[@id='accounts-index']"));
     private SelenideElement insuranceVehicle =$(By.xpath("//a[@id='insurance-vehicle']"));
     private SelenideElement insuranceTravel =$(By.xpath("//a[@id='insurance-travel']"));
     private SelenideElement insuranceLife =$(By.xpath("//a[@id='insurance-life']"));
     private SelenideElement insuranceFlight =$(By.xpath("//a[@id='insurance-flight']"));
     private SelenideElement insuranceEstate =$(By.xpath("//a[@id='insurance-estate']"));
-    private SelenideElement insurancePension =$(By.xpath("//a[@id='insurance-pension']"));*/
+    private SelenideElement insurancePension =$(By.xpath("//a[@id='insurance-pension']"));
 
     @BeforeAll
     static void beforeConfig() {
         Configuration.timeout = 3000; // Умное ожидание появление элемента на странице
-        Configuration.browserSize = "1920x1080"; // Умно
+        Configuration.browserSize = "1620x1080"; // Умно
     }
 
 
     @BeforeEach
     public void before() {
+
         open(baseUrl);
-    }
-
-    @Test
-    public void test() {
-
 
         loginInput.should(Condition.visible).val("demo");
         passwordInput.should(Condition.visible).val("demo");
@@ -60,29 +50,86 @@ public class FirstTest {
 
         codeInput.should(Condition.visible).val("0000");
         codeBtn.should(Condition.visible).click();
-
-        //Проверка текства
+    }
+    @Test
+    public void testOverview() {
         Assertions.assertEquals(overview.should(Condition.visible).getText(),"ОБЗОР");
-        Assertions.assertEquals(accounts.should(Condition.visible).getText(),"СЧЕТА");
-        Assertions.assertEquals(payments.should(Condition.visible).getText(),"ПЛАТЕЖИ И ПЕРЕВОДЫ");
-        Assertions.assertEquals(cards.should(Condition.visible).getText(),"КАРТЫ");
-        Assertions.assertEquals(deposits.should(Condition.visible).getText(),"ВКЛАДЫ");
-        Assertions.assertEquals(loans.should(Condition.visible).getText(),"КРЕДИТЫ");
-        Assertions.assertEquals(externalTraderoom.should(Condition.visible).getText(),"ВАЛЮТА");
-        Assertions.assertEquals(insurance.should(Condition.visible).getText(),"СТРАХОВАНИЕ");
-
         overview.should(Condition.visible).click();
-        accounts.should(Condition.visible).click();
-        payments.should(Condition.visible).click();
-        cards.should(Condition.visible).click();
-        deposits.should(Condition.visible).click();
-        loans.should(Condition.visible).click();
-        externalTraderoom.should(Condition.visible).click();
+    }
+   @Test
+   public void testAccounts() {
+       Assertions.assertEquals(accounts.should(Condition.visible).getText(), "СЧЕТА");
+       accounts.should(Condition.visible).click();
+
+       accounts.hover();
+       Assertions.assertEquals(statementsStatement.should(Condition.visible).getText(), "Выписка");
+       statementsStatement.should(Condition.visible).click();
+
+       accounts.hover();
+       Assertions.assertEquals(accountsIndex.should(Condition.visible).getText(),"Текущие");
+       accountsIndex.should(Condition.visible).click();
+   }
+   @Test
+   public void testPayments() {
+       Assertions.assertEquals(payments.should(Condition.visible).getText(), "ПЛАТЕЖИ И ПЕРЕВОДЫ");
+       payments.should(Condition.visible).click();
+    }
+
+   @Test
+   public void testCards() {
+       Assertions.assertEquals(cards.should(Condition.visible).getText(), "КАРТЫ");
+       cards.should(Condition.visible).click();
+   }
+
+   @Test
+   public void testDeposits() {
+       Assertions.assertEquals(deposits.should(Condition.visible).getText(), "ВКЛАДЫ");
+       deposits.should(Condition.visible).click();
+   }
+   @Test
+   public void testLoans() {
+       Assertions.assertEquals(loans.should(Condition.visible).getText(), "КРЕДИТЫ");
+       loans.should(Condition.visible).click();
+   }
+   @Test
+   public void testExternalTraderoom() {
+       Assertions.assertEquals(externalTraderoom.should(Condition.visible).getText(), "ВАЛЮТА");
+       externalTraderoom.should(Condition.visible).click();
+   }
+   @Test
+   public void testInsurance(){
+        Assertions.assertEquals(insurance.should(Condition.visible).getText(),"СТРАХОВАНИЕ");
         insurance.should(Condition.visible).click();
 
-        logo.should(Condition.visible).click();
+        insurance.hover();
+        Assertions.assertEquals(insuranceVehicle.should(Condition.visible).getText(),"Страхование автомобиля");
+        insuranceVehicle.should(Condition.visible).click();
+
+        insurance.hover();
+        //Assertions.assertEquals(insuranceTravel.should(Condition.visible).getText(),"Страхование путешественников");
+        insuranceTravel.should(Condition.visible).click();
+
+        insurance.hover();
+        //Assertions.assertEquals(insuranceLife.should(Condition.visible).getText(),"Страхование жизни, здоровья и спорта");
+        insuranceLife.should(Condition.visible).click();
+
+        insurance.hover();
+        //Assertions.assertEquals(insuranceFlight.should(Condition.visible).getText(),"Защита от задержки или отмены рейса");
+        insuranceFlight.should(Condition.visible).click();
+
+        insurance.hover();
+        //Assertions.assertEquals(insuranceEstate.should(Condition.visible).getText(),"Страхование недвижимости");
+        insuranceEstate.should(Condition.visible).click();
+
+        insurance.hover();
+        //Assertions.assertEquals(insurancePension.should(Condition.visible).getText(),"Пенсионное обеспечение");
+        insurancePension.should(Condition.visible).click();
 
         //sleep(100000);
+    }
+    @Test
+    public void testLogo(){
+        logo.should(Condition.visible).click();
     }
 
     @AfterEach
