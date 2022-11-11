@@ -24,14 +24,16 @@ public class FirstTest {
     private SelenideElement insurance =$(By.xpath("//a[@id='insurance-travel']"));
     private SelenideElement logo =$(By.xpath("//a[@id='logo']"));
     private SelenideElement statementsStatement =$(By.xpath("//a[@id='statements-statement']"));
-    private SelenideElement accountsIndex =$(By.xpath("//a[@id='accounts-index']"));
+    private SelenideElement accountsIndex =$(By.xpath("//ul[@class='navigation-menu dropdown-menu']//a[@id='accounts-index']"));
     private SelenideElement insuranceVehicle =$(By.xpath("//a[@id='insurance-vehicle']"));
-    private SelenideElement insuranceTravel =$(By.xpath("//a[@id='insurance-travel']"));
+    private SelenideElement insuranceTravel =$(By.xpath("//ul [@class = 'navigation-menu dropdown-menu']//a [@id ='insurance-travel']"));
     private SelenideElement insuranceLife =$(By.xpath("//a[@id='insurance-life']"));
     private SelenideElement insuranceFlight =$(By.xpath("//a[@id='insurance-flight']"));
     private SelenideElement insuranceEstate =$(By.xpath("//a[@id='insurance-estate']"));
     private SelenideElement insurancePension =$(By.xpath("//a[@id='insurance-pension']"));
-
+// //ul[@class='navigation-menu dropdown-menu']//a[@id='accounts-index']
+    // //a[.='Текущие']
+// //ul [@class = 'navigation-menu dropdown-menu']//a [@id ='insurance-travel']
     @BeforeAll
     static void beforeConfig() {
         Configuration.timeout = 3000; // Умное ожидание появление элемента на странице
@@ -63,11 +65,11 @@ public class FirstTest {
 
        accounts.hover();
        Assertions.assertEquals(statementsStatement.should(Condition.visible).getText(), "Выписка");
-       statementsStatement.should(Condition.visible).click();
+       statementsStatement.click();
 
        accounts.hover();
        Assertions.assertEquals(accountsIndex.should(Condition.visible).getText(),"Текущие");
-       accountsIndex.should(Condition.visible).click();
+       accountsIndex.click();
    }
    @Test
    public void testPayments() {
@@ -103,27 +105,27 @@ public class FirstTest {
 
         insurance.hover();
         Assertions.assertEquals(insuranceVehicle.should(Condition.visible).getText(),"Страхование автомобиля");
-        insuranceVehicle.should(Condition.visible).click();
+        insuranceVehicle.click();
 
         insurance.hover();
-        //Assertions.assertEquals(insuranceTravel.should(Condition.visible).getText(),"Страхование путешественников");
-        insuranceTravel.should(Condition.visible).click();
+        Assertions.assertEquals(insuranceTravel.should(Condition.visible).getText(),"Страхование путешественников");
+        insuranceTravel.click();
 
         insurance.hover();
-        //Assertions.assertEquals(insuranceLife.should(Condition.visible).getText(),"Страхование жизни, здоровья и спорта");
-        insuranceLife.should(Condition.visible).click();
+        Assertions.assertEquals(insuranceLife.should(Condition.visible).getText(),"Страхование жизни, здоровья и спорта");
+        insuranceLife.click();
 
         insurance.hover();
-        //Assertions.assertEquals(insuranceFlight.should(Condition.visible).getText(),"Защита от задержки или отмены рейса");
-        insuranceFlight.should(Condition.visible).click();
+        Assertions.assertEquals(insuranceFlight.should(Condition.visible).getText(),"Защита от задержки или отмены рейса");
+        insuranceFlight.click();
 
         insurance.hover();
-        //Assertions.assertEquals(insuranceEstate.should(Condition.visible).getText(),"Страхование недвижимости");
-        insuranceEstate.should(Condition.visible).click();
+        Assertions.assertEquals(insuranceEstate.should(Condition.visible).getText(),"Страхование недвижимости");
+        insuranceEstate.click();
 
         insurance.hover();
-        //Assertions.assertEquals(insurancePension.should(Condition.visible).getText(),"Пенсионное обеспечение");
-        insurancePension.should(Condition.visible).click();
+        Assertions.assertEquals(insurancePension.should(Condition.visible).getText(),"Пенсионное обеспечение");
+        insurancePension.click();
 
         //sleep(100000);
     }
