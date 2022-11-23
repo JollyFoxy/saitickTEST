@@ -31,7 +31,23 @@ public class FirstTest {
     private SelenideElement insuranceFlight =$(By.xpath("//a[@id='insurance-flight']"));
     private SelenideElement insuranceEstate =$(By.xpath("//a[@id='insurance-estate']"));
     private SelenideElement insurancePension =$(By.xpath("//a[@id='insurance-pension']"));
-// //ul[@class='navigation-menu dropdown-menu']//a[@id='accounts-index']
+    private SelenideElement smartPayment =$(By.xpath("//input[@id='smart-payment']"));
+    private SelenideElement btnShowRates =$(By.xpath("//a[@id='btn-show-rates']"));
+    private SelenideElement sumInput =$(By.xpath("//input[@id='amount']"));
+    private SelenideElement submitBtn =$(By.xpath("//button[@id='submit-button']"));
+    private SelenideElement newDeposCondCeckBtn=
+            $(By.xpath("//input[@name='condition.newDepositConditions']"));
+
+    private SelenideElement instantDeposCondCheckBtn=
+            $(By.xpath("//input[@name='condition.instantDepositAgreement']"));
+    private SelenideElement acceptInstantDepositAgreementButton =$(By.xpath("//a[@id='accept-instant-deposit-agreement-button']"));
+
+    private SelenideElement instantDepositAgreementContent =$(By.xpath("//div[@class='modal-body']"));
+    private SelenideElement table =$(By.xpath("//div[@class='table']"));
+    private SelenideElement wrapper =$(By.xpath("//div[@id='inner-wrapper']"));
+    private static String opDeposUrl="https://idemo.bspb.ru/deposits/form/10162?days=367";
+
+    // //ul[@class='navigation-menu dropdown-menu']//a[@id='accounts-index']
     // //a[.='Текущие']
 // //ul [@class = 'navigation-menu dropdown-menu']//a [@id ='insurance-travel']
     @BeforeAll
@@ -58,8 +74,8 @@ public class FirstTest {
         Assertions.assertEquals(overview.should(Condition.visible).getText(),"ОБЗОР");
         overview.should(Condition.visible).click();
     }
-   @Test
-   public void testAccounts() {
+    @Test
+    public void testAccounts() {
        Assertions.assertEquals(accounts.should(Condition.visible).getText(), "СЧЕТА");
        accounts.should(Condition.visible).click();
 
@@ -71,35 +87,49 @@ public class FirstTest {
        Assertions.assertEquals(accountsIndex.should(Condition.visible).getText(),"Текущие");
        accountsIndex.click();
    }
-   @Test
-   public void testPayments() {
+    @Test
+    public void testPayments() {
        Assertions.assertEquals(payments.should(Condition.visible).getText(), "ПЛАТЕЖИ И ПЕРЕВОДЫ");
        payments.should(Condition.visible).click();
-    }
 
-   @Test
-   public void testCards() {
+       smartPayment.should(Condition.visible).val("1111");
+    }
+    @Test
+    public void testCards() {
        Assertions.assertEquals(cards.should(Condition.visible).getText(), "КАРТЫ");
        cards.should(Condition.visible).click();
    }
-
-   @Test
-   public void testDeposits() {
+    @Test
+    public void testDeposits() {
        Assertions.assertEquals(deposits.should(Condition.visible).getText(), "ВКЛАДЫ");
        deposits.should(Condition.visible).click();
+       btnShowRates.should(Condition.visible).click();
+       open(opDeposUrl);
+        sumInput.should(Condition.visible).val("100000");
+        sleep(1000);
+        submitBtn.should(Condition.visible).click();
+        newDeposCondCeckBtn.should(Condition.visible).click();
+        // wrapper.scrollIntoView(false);
+        instantDeposCondCheckBtn.should(Condition.visible).click();
+        //$(By.xpath("div[@class='modal-body']"))
+        instantDepositAgreementContent.scrollIntoView(true);
+       // sleep(1000);
+        acceptInstantDepositAgreementButton.should(Condition.visible).click();
+        /*acceptInstantDepositAgreementButton.should(Condition.visible).click();
+        sleep(10000);*/
    }
-   @Test
-   public void testLoans() {
+    @Test
+    public void testLoans() {
        Assertions.assertEquals(loans.should(Condition.visible).getText(), "КРЕДИТЫ");
        loans.should(Condition.visible).click();
    }
-   @Test
-   public void testExternalTraderoom() {
+    @Test
+    public void testExternalTraderoom() {
        Assertions.assertEquals(externalTraderoom.should(Condition.visible).getText(), "ВАЛЮТА");
        externalTraderoom.should(Condition.visible).click();
    }
-   @Test
-   public void testInsurance(){
+    @Test
+    public void testInsurance(){
         Assertions.assertEquals(insurance.should(Condition.visible).getText(),"СТРАХОВАНИЕ");
         insurance.should(Condition.visible).click();
 
@@ -135,8 +165,5 @@ public class FirstTest {
     }
 
     @AfterEach
-    public void after() {
-
-    }
-
+    public void after() {}
 }
