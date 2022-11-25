@@ -41,9 +41,10 @@ public class FirstTest {
     private SelenideElement instantDeposCondCheckBtn=
             $(By.xpath("//input[@name='condition.instantDepositAgreement']"));
     private SelenideElement acceptInstantDepositAgreementButton =$(By.xpath("//a[@id='accept-instant-deposit-agreement-button']"));
+    private SelenideElement confirm =$(By.xpath("//button[@id='confirm']"));
 
-    private SelenideElement instantDepositAgreementContent =$(By.xpath("//div[@class='modal-body']"));
-    private SelenideElement table =$(By.xpath("//div[@class='table']"));
+    private SelenideElement windowTable =$(By.xpath("//table[@class='table']"));
+    private SelenideElement instantDepositAgreementContent2 =$(By.xpath("//div[@id='instant-deposit-agreement-content']"));
     private SelenideElement wrapper =$(By.xpath("//div[@id='inner-wrapper']"));
     private static String opDeposUrl="https://idemo.bspb.ru/deposits/form/10162?days=367";
 
@@ -105,18 +106,14 @@ public class FirstTest {
        deposits.should(Condition.visible).click();
        btnShowRates.should(Condition.visible).click();
        open(opDeposUrl);
-        sumInput.should(Condition.visible).val("100000");
-        sleep(1000);
-        submitBtn.should(Condition.visible).click();
-        newDeposCondCeckBtn.should(Condition.visible).click();
-        // wrapper.scrollIntoView(false);
-        instantDeposCondCheckBtn.should(Condition.visible).click();
-        //$(By.xpath("div[@class='modal-body']"))
-        instantDepositAgreementContent.scrollIntoView(true);
-       // sleep(1000);
-        acceptInstantDepositAgreementButton.should(Condition.visible).click();
-        /*acceptInstantDepositAgreementButton.should(Condition.visible).click();
-        sleep(10000);*/
+       sumInput.should(Condition.visible).val("100000");
+       sleep(1000);
+       submitBtn.should(Condition.visible).click();
+       newDeposCondCeckBtn.should(Condition.visible).click();
+       instantDeposCondCheckBtn.should(Condition.visible).click();
+       windowTable.scrollIntoView(false);//не докручивает
+       acceptInstantDepositAgreementButton.should(Condition.visible).click();
+       confirm.should(Condition.visible).click();
    }
     @Test
     public void testLoans() {
