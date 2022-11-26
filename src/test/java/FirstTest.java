@@ -111,7 +111,7 @@ public class FirstTest {
        submitBtn.should(Condition.visible).click();
        newDeposCondCeckBtn.should(Condition.visible).click();
        instantDeposCondCheckBtn.should(Condition.visible).click();
-       windowTable.scrollIntoView(false);//не докручивает
+       windowTable.scrollTo();
        acceptInstantDepositAgreementButton.should(Condition.visible).click();
        confirm.should(Condition.visible).click();
    }
