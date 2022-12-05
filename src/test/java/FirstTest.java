@@ -1,60 +1,91 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import org.checkerframework.common.reflection.qual.GetMethod;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
+import Test_Saitik.TestAccounts;
 
 public class FirstTest {
 
-    private static String baseUrl = "https://idemo.bspb.ru/";
+    // Переменные для вхда
+    private  static String baseUrl = "https://idemo.bspb.ru/";
     private SelenideElement loginInput = $(By.xpath("//input[@name='username']"));
     private SelenideElement passwordInput = $(By.xpath("//input[@name='password']"));
     private SelenideElement loginBtn = $(By.xpath("//button[@id='login-button']"));
     private SelenideElement codeInput = $(By.xpath("//input[@id='otp-code']"));
     private SelenideElement codeBtn = $(By.xpath("//button[@id='login-otp-button']"));
+
+
+    // Переменые для тестирования "Обзора"
     private SelenideElement overview =$(By.xpath("//a[@id='bank-overview']"));
-    private SelenideElement accounts  =$(By.xpath("//a[@id='accounts-index']"));
+
+
+    // Переменые для тестирования "Счета"
+    private TestAccounts TA;
+
+
+    //Переменые для тестирования "Платежи и переводы"
     private SelenideElement payments  =$(By.xpath("//a[@id='payments-form']"));
+
+
+    //Переменые для тестирования "Карты"
     private SelenideElement cards  =$(By.xpath("//a[@id='cards-overview-index']"));
+
+
+    //Переменые для тестирования "Вклады"
     private SelenideElement deposits =$(By.xpath("//a[@id='deposits-index']"));
+    private SelenideElement btnShowRates =$(By.xpath("//a[@id='btn-show-rates']"));
+    private static String opDeposUrl="https://idemo.bspb.ru/deposits/form/10162?days=367";
+    private SelenideElement sumInput =$(By.xpath("//input[@id='amount']"));
+    private SelenideElement submitBtn =$(By.xpath("//button[@id='submit-button']"));
+    private SelenideElement newDeposCondCeckBtn= $(By.xpath("//input[@name='condition.newDepositConditions']"));
+    private SelenideElement instantDeposCondCheckBtn= $(By.xpath("//input[@name='condition.instantDepositAgreement']"));
+    private SelenideElement acceptInstantDepositAgreementButton =$(By.xpath("//a[@id='accept-instant-deposit-agreement-button']"));
+    private SelenideElement textik =$(By.xpath("//td[.='10. Способ обмена информацией между банком и вкладчиком']"));
+    private SelenideElement confirm =$(By.xpath("//button[@id='confirm']"));
+
+
+    //Переменые для тестирования "Кредиты"
     private SelenideElement loans =$(By.xpath("//a[@id='loans-index']"));
+
+
+    //Переменные для тестированиея "Валюты"
     private SelenideElement externalTraderoom =$(By.xpath("//a[@id='externaltraderoom-index']"));
-    private SelenideElement insurance =$(By.xpath("//a[@id='insurance-travel']"));
-    private SelenideElement logo =$(By.xpath("//a[@id='logo']"));
+
+
+    // Переменые для тестирования "Счета"
+    private SelenideElement accounts  =$(By.xpath("//a[@id='accounts-index']"));
     private SelenideElement statementsStatement =$(By.xpath("//a[@id='statements-statement']"));
     private SelenideElement accountsIndex =$(By.xpath("//ul[@class='navigation-menu dropdown-menu']//a[@id='accounts-index']"));
+
+
+
+    //Переменые для тестирования "Страхования"
+    private SelenideElement insurance =$(By.xpath("//a[@id='insurance-travel']"));
     private SelenideElement insuranceVehicle =$(By.xpath("//a[@id='insurance-vehicle']"));
     private SelenideElement insuranceTravel =$(By.xpath("//ul [@class = 'navigation-menu dropdown-menu']//a [@id ='insurance-travel']"));
     private SelenideElement insuranceLife =$(By.xpath("//a[@id='insurance-life']"));
     private SelenideElement insuranceFlight =$(By.xpath("//a[@id='insurance-flight']"));
     private SelenideElement insuranceEstate =$(By.xpath("//a[@id='insurance-estate']"));
     private SelenideElement insurancePension =$(By.xpath("//a[@id='insurance-pension']"));
-    private SelenideElement smartPayment =$(By.xpath("//input[@id='smart-payment']"));
-    private SelenideElement btnShowRates =$(By.xpath("//a[@id='btn-show-rates']"));
-    private SelenideElement sumInput =$(By.xpath("//input[@id='amount']"));
-    private SelenideElement submitBtn =$(By.xpath("//button[@id='submit-button']"));
-    private SelenideElement newDeposCondCeckBtn=
-            $(By.xpath("//input[@name='condition.newDepositConditions']"));
 
-    private SelenideElement instantDeposCondCheckBtn=
-            $(By.xpath("//input[@name='condition.instantDepositAgreement']"));
-    private SelenideElement acceptInstantDepositAgreementButton =$(By.xpath("//a[@id='accept-instant-deposit-agreement-button']"));
-    private SelenideElement confirm =$(By.xpath("//button[@id='confirm']"));
 
-    private SelenideElement windowTable =$(By.xpath("//table[@class='table']"));
-    private SelenideElement instantDepositAgreementContent2 =$(By.xpath("//div[@id='instant-deposit-agreement-content']"));
-    private SelenideElement wrapper =$(By.xpath("//div[@id='inner-wrapper']"));
-    private static String opDeposUrl="https://idemo.bspb.ru/deposits/form/10162?days=367";
 
+    //Переменные для тестирования "Логотипа"
+    private SelenideElement logo =$(By.xpath("//a[@id='logo']"));
+
+    //Мусор
     // //ul[@class='navigation-menu dropdown-menu']//a[@id='accounts-index']
     // //a[.='Текущие']
-// //ul [@class = 'navigation-menu dropdown-menu']//a [@id ='insurance-travel']
+    // //ul [@class = 'navigation-menu dropdown-menu']//a [@id ='insurance-travel']
     @BeforeAll
     static void beforeConfig() {
         Configuration.timeout = 3000; // Умное ожидание появление элемента на странице
         Configuration.browserSize = "1620x1080"; // Умно
+
     }
 
 
@@ -75,25 +106,25 @@ public class FirstTest {
         Assertions.assertEquals(overview.should(Condition.visible).getText(),"ОБЗОР");
         overview.should(Condition.visible).click();
     }
+
     @Test
     public void testAccounts() {
-       Assertions.assertEquals(accounts.should(Condition.visible).getText(), "СЧЕТА");
-       accounts.should(Condition.visible).click();
+        Assertions.assertEquals(accounts.should(Condition.visible).getText(), "СЧЕТА");
+        accounts.should(Condition.visible).click();
+        sleep(5000);
 
-       accounts.hover();
-       Assertions.assertEquals(statementsStatement.should(Condition.visible).getText(), "Выписка");
-       statementsStatement.click();
+        accounts.hover();
+        Assertions.assertEquals(statementsStatement.should(Condition.visible).getText(), "Выписка");
+        statementsStatement.click();
 
-       accounts.hover();
-       Assertions.assertEquals(accountsIndex.should(Condition.visible).getText(),"Текущие");
-       accountsIndex.click();
-   }
+        accounts.hover();
+        Assertions.assertEquals(accountsIndex.should(Condition.visible).getText(),"Текущие");
+        accountsIndex.click();
+    }
     @Test
     public void testPayments() {
        Assertions.assertEquals(payments.should(Condition.visible).getText(), "ПЛАТЕЖИ И ПЕРЕВОДЫ");
        payments.should(Condition.visible).click();
-
-       smartPayment.should(Condition.visible).val("1111");
     }
     @Test
     public void testCards() {
@@ -111,7 +142,7 @@ public class FirstTest {
        submitBtn.should(Condition.visible).click();
        newDeposCondCeckBtn.should(Condition.visible).click();
        instantDeposCondCheckBtn.should(Condition.visible).click();
-       windowTable.scrollTo();
+       textik.scrollIntoView(true);
        acceptInstantDepositAgreementButton.should(Condition.visible).click();
        confirm.should(Condition.visible).click();
    }
@@ -119,6 +150,8 @@ public class FirstTest {
     public void testLoans() {
        Assertions.assertEquals(loans.should(Condition.visible).getText(), "КРЕДИТЫ");
        loans.should(Condition.visible).click();
+
+
    }
     @Test
     public void testExternalTraderoom() {

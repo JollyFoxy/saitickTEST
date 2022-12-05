@@ -1,3 +1,5 @@
+package Test_Saitik;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
@@ -10,7 +12,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Prokrutka {
+public class TestDeposits {
 
     private static String baseUrl = "https://idemo.bspb.ru/";
     private SelenideElement loginInput = $(By.xpath("//input[@name='username']"));
@@ -31,6 +33,7 @@ public class Prokrutka {
     private SelenideElement confirm =$(By.xpath("//button[@id='confirm']"));
 
     private SelenideElement windowTable =$(By.xpath("//table[@class='table']"));
+
 
 
 
@@ -55,7 +58,7 @@ public class Prokrutka {
     }
 
     @Test
-    public void testDeposits() {
+    public void testDepositsGetText() {
         Assertions.assertEquals(deposits.should(Condition.visible).getText(), "ВКЛАДЫ");
         deposits.should(Condition.visible).click();
         btnShowRates.should(Condition.visible).click();
@@ -65,7 +68,7 @@ public class Prokrutka {
         submitBtn.should(Condition.visible).click();
         newDeposCondCeckBtn.should(Condition.visible).click();
         instantDeposCondCheckBtn.should(Condition.visible).click();
-        windowTable.scrollIntoView(false);
+        //windowTable.scrollIntoView(false);
         acceptInstantDepositAgreementButton.should(Condition.visible).click();
         confirm.should(Condition.visible).click();
     }
