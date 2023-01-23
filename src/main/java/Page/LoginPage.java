@@ -11,28 +11,27 @@ import static com.codeborne.selenide.Selenide.$x;
 public class LoginPage {
     private final Input userName = new Input("username");
     private final Input userPassword = new Input("password");
-//    password
     private final Button loginBtn = new Button($(By.cssSelector("#login-button")),"loginBtn");
     private final Input codeInput = new Input($x("//input[@id='otp-code']"));
     private final Button codeBtn = new  Button($(By.cssSelector("#login-otp-button")),"CodeBtn");
 
-    @Step("")
+    @Step("Ввод логина")
     public void inputName(String name) {
         userName.setValueInput(name);
     }
-    @Step("")
+    @Step("Ввод паоля")
     public void inputPass(String pass){
         userPassword.setValueInput(pass);
     }
-    @Step("")
+    @Step("Нажатие кнопки \"Войти\"")
     public void clickLoginBtn() {
         loginBtn.clickBtn();
     }
-    @Step("")
+    @Step("Ввод кода")
     public void inputCode(String code){
         codeInput.setValueInput(code);
     }
-    @Step
+    @Step("Нажатие кнопки \"Войти\"")
     public void clickCodeBtn(){
         codeBtn.clickBtn();
     }

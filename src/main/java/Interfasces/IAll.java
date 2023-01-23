@@ -1,7 +1,7 @@
 package Interfasces;
 
 import Page.LoginPage;
-import Staps.DepositPage;
+import Page.DepositPage;
 
 public interface IAll {
     String baseUrl = "https://idemo.bspb.ru/";

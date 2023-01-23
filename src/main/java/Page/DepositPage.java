@@ -1,12 +1,11 @@
-package Staps;
+package Page;
 
 import Tools.Elements.*;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class DepositPage {
     public final A deposits =new A($x("//a[@id='deposits-index']"));
