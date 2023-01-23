@@ -1,18 +1,17 @@
 package Tools.Elements;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class TextArea {
+public class TextArea extends BaseElement {
 
-    private final SelenideElement textArea;
-
-    public TextArea(String id) {
-        textArea = $(By.xpath("//textarea[@id='" + id + "']"));
+    public TextArea(SelenideElement container) {
+        super(container);
     }
     public void setValueTextArea(String value) {
-        textArea.setValue(value);
+        container.setValue(value);
     }
 }

@@ -11,9 +11,9 @@ import static com.codeborne.selenide.Selenide.$x;
 public class LoginPage {
     private final Input userName = new Input("username");
     private final Input userPassword = new Input("password");
-    private final Button loginBtn = new Button($(By.cssSelector("#login-button")),"loginBtn");
+    private final Button loginBtn = new Button($(By.cssSelector("#login-button")));
     private final Input codeInput = new Input($x("//input[@id='otp-code']"));
-    private final Button codeBtn = new  Button($(By.cssSelector("#login-otp-button")),"CodeBtn");
+    private final Button codeBtn = new  Button($(By.cssSelector("#login-otp-button")));
 
     @Step("Ввод логина")
     public void inputName(String name) {

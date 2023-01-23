@@ -44,13 +44,13 @@ public class Test01 extends BaseTest {
     }
     @Step("Простановка соглашений")
     public void step_6(){
-        depositPage.scrolling.scrollToObject();
+        depositPage.scrollPage.scrollToObject();
         depositPage.newDeposCondCheckBtn.clickInput();
         depositPage.instantDeposCondCheckBtn.clickInput();
     }
     @Step("Ознакомление и потверждение соглашения")
     public void step_7() {
-        depositPage.body.scrollIntoView(true);
+        depositPage.scrollTable.scrollIntoView(true);
         depositPage.acceptInstantDepositAgreementButton.clickA();
     }
     @Step("Нажатие кнопки \"Подтвердить\"")

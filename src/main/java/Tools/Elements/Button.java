@@ -10,8 +10,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Button extends BaseElement {
 
-    public Button(SelenideElement container, String buttonName) {
-        super(container.as("Кнопка: " + buttonName));
+    public Button(SelenideElement container) {
+        super(container);
 //        button = $(By.cssSelector("button#"+id));
     }
     public void clickBtn(){

@@ -19,15 +19,16 @@ public class BaseTest implements IAll, IPerson {
     static void beforeConfig() {
         Configuration.browser= WebDriver.class.getName();
         Configuration.timeout = 10000;
-    }
-    @BeforeEach
-    public void before() {
         open(baseUrl);
         WebDriverRunner.getWebDriver().manage().window().maximize();
         login();
     }
+    @BeforeEach
+    public void before() {
+
+    }
     @Step("Авторизация на сайтие")
-    public void login(){
+    public static void login(){
         loginPage.inputName(demoPerson.getName());
         loginPage.inputPass(demoPerson.getPassword());
         loginPage.clickLoginBtn();
