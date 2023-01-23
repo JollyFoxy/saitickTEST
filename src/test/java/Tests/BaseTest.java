@@ -1,8 +1,10 @@
 package Tests;
 
 import Interfasces.IAll;
+import Persons.IPerson;
 import Tools.WebDrivers.WebDriver;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class BaseTest implements IAll {
+public class BaseTest implements IAll, IPerson {
 
 
     @BeforeAll
@@ -21,14 +23,16 @@ public class BaseTest implements IAll {
     @BeforeEach
     public void before() {
         open(baseUrl);
+        WebDriverRunner.getWebDriver().manage().window().maximize();
+        login();
     }
-    @Step
+    @Step("Авторизация на сайтие")
     public void login(){
-        loginPage.inputName();
-        loginPage.inputPass();
+        loginPage.inputName(demoPerson.getName());
+        loginPage.inputPass(demoPerson.getPassword());
         loginPage.clickLoginBtn();
-        loginPage.inputCode();
-        loginPage.inputCode();
+        loginPage.inputCode("0000");
+        loginPage.clickCodeBtn();
     }
     @AfterEach
     public void after() {}

@@ -5,16 +5,16 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class A {
-    private final SelenideElement a;
-    public A(String id){
-        a = $(By.id(id));
+public class A extends BaseElement {
+
+    public A(SelenideElement container ){
+        super(container);
     }
     public void hoverA(){
-        a.hover();
+        container.hover();
     }
     public void clickA(){
-        a.click();
+        container.click();
     }
 
 }

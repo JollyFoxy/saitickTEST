@@ -1,37 +1,25 @@
 package Staps;
 
-import Tools.Elements.A;
-import Tools.Elements.Button;
-import Tools.Elements.Input;
+import Tools.Elements.*;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DepositPage {
-    private final A deposits =new A("deposits-index");
-    private final A btnShowRates =new A("btn-show-rates");
-    private final SelenideElement opDepos =$(By.cssSelector("a.btn btn-primary"));
-    private final Button submitBtn =new Button("submit-button");
-    private final Input sumInput =new Input("amount");
-    private final Input newDeposCondCheckBtn = new Input("condition.newDepositConditions",true);
-    private final Input instantDeposCondCheckBtn= new Input("condition.instantDepositAgreement",true);
-    private final A acceptInstantDepositAgreementButton =new A("accept-instant-deposit-agreement-button");
-    private final Button confirm =new Button("confirm");
-    private final SelenideElement body =$(By.xpath("//td[.='10. Способ обмена информацией между банком и вкладчиком']"));
+    public final A deposits =new A($x("//a[@id='deposits-index']"));
+    public final A btnShowRates =new A($x("//a[@id='btn-show-rates']"));
+    public final A opDepos =new A($x("//a[@href='/deposits/form/10184?days=367']"));
+    public final Button submitBtn =new Button($x("//button[@id='submit-button']"),"submitBtn");
+    public final Input sumInput =new Input($x("//input[@id='amount']"));
+    public final Input newDeposCondCheckBtn = new Input($x("//input[@name='condition.newDepositConditions']"));
+    public final Input instantDeposCondCheckBtn= new Input($x("//input[@name='condition.instantDepositAgreement']"));
+    public final A acceptInstantDepositAgreementButton =new A($x("//a[@id='accept-instant-deposit-agreement-button']"));
+    public final Button confirm =new Button($x("//button[@id='confirm']"),"Подтвеодить");
+    public final SelenideElement body =$(By.xpath("//td[.='Способ обмена информацией между банком и вкладчиком']"));
+    public final Span income =new Span($x("//span[@id='estimated-interest']"));
+    public final Scrolling scrolling = new Scrolling("#contentbar");
 
-    @Step
-    public void testDeposits() {
-        deposits.clickA();
-        btnShowRates.clickA();
-        opDepos.click();
-        sumInput.setValueInput("100000");
-        submitBtn.clickBtn();
-        newDeposCondCheckBtn.clickInput();
-        instantDeposCondCheckBtn.clickInput();
-        body.scrollIntoView(true);
-        acceptInstantDepositAgreementButton.clickA();
-        confirm.clickBtn();
-    }
 }

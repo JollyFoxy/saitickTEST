@@ -1,8 +1,9 @@
 # Default ignored files
 /shelf/
 /.idea/workspace.xml
-duld/
+build/
 target/
+.allure/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

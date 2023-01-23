@@ -2,38 +2,37 @@ package Tools.Elements;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class Button {
-    private final SelenideElement button;
+public class Button extends BaseElement {
 
-    public Button(String id){
-        button = $(By.cssSelector("button#"+id));
+    public Button(SelenideElement container, String buttonName) {
+        super(container.as("Кнопка: " + buttonName));
+//        button = $(By.cssSelector("button#"+id));
     }
     public void clickBtn(){
-        button.click();
+        container.click();
     }
     public void doubleClickBtn(){
-        button.doubleClick();
+        container.doubleClick();
     }
     public void rightClickBtn(){
-        button.contextClick();
+        container.contextClick();
     }
     public void checkVisibleAndTimeoutClickBtn(int seconds){
-        button.should(Condition.visible, Duration.ofSeconds(seconds)).click();
+        container.should(Condition.visible, Duration.ofSeconds(seconds)).click();
     }
     public void checkEnabledAndTimeoutClickBtn(int seconds){
-        button.shouldBe(Condition.enabled,Duration.ofSeconds(seconds)).click();
+        container.shouldBe(Condition.enabled,Duration.ofSeconds(seconds)).click();
     }
     public void checkColorBtn(String css_rgba,int seconds){
-        button.should(Condition.cssValue("color","rgba("+css_rgba+")"),Duration.ofSeconds(seconds)).click();
+        container.should(Condition.cssValue("color","rgba("+css_rgba+")"),Duration.ofSeconds(seconds)).click();
     }
     public void checkVisibleBtn(){
-        button.should(Condition.visible).click();
+        container.should(Condition.visible).click();
     }
 }
