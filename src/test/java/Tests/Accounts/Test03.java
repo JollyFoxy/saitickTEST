@@ -46,7 +46,7 @@ public class Test03 extends BaseTest {
     public void step6(){
         accountsPage.saveBtn.clickBtn();
     }
-    @Step("")
+    @Step("Смкена пользователя назад")
     public void step7(){
         Person.changePerson("Королёва Ольга");
     }
