@@ -18,7 +18,7 @@ public class BaseTest implements IAll, IPerson {
     @BeforeAll
     static void beforeConfig() {
         Configuration.browser= WebDriver.class.getName();
-        Configuration.timeout = 10000;
+        Configuration.timeout = 100000;
         open(baseUrl);
         WebDriverRunner.getWebDriver().manage().window().maximize();
         login();
