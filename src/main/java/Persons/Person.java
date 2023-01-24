@@ -15,7 +15,7 @@ public class Person {
     private int age;
     @Step("Изменеие пользователя")
     public static void changePerson(String namePerson){
-        $x("//span[.='Королёва Ольга']").click();
+        $x("//button[@class='btn dropdown-toggle selectpicker btn-default']").click();
         $x("//span[.='"+namePerson+"']").click();
     }
 }

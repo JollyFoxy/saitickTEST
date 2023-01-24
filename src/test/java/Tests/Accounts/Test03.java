@@ -19,6 +19,7 @@ public class Test03 extends BaseTest {
         step4();
         step5("5100");
         step6();
+        step7();
     }
     @Step("Изменмение аккаунта")
     public void step1(){
@@ -44,5 +45,9 @@ public class Test03 extends BaseTest {
     @Step("Нажатие \"Сохранить\"")
     public void step6(){
         accountsPage.saveBtn.clickBtn();
+    }
+    @Step("")
+    public void step7(){
+        Person.changePerson("Королёва Ольга");
     }
 }
