@@ -1,4 +1,4 @@
-package Tests.Pames;
+package Tests.Payments;
 
 import Tests.BaseTest;
 import io.qameta.allure.Feature;
@@ -6,7 +6,7 @@ import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@Feature("Платежи переводы")
+@Feature("Платежи и переводы")
 public class Test02_1 extends BaseTest {
     @Test
     @DisplayName("перевод между своими счетами")
@@ -22,7 +22,7 @@ public class Test02_1 extends BaseTest {
     public void step1(){
         paymentsPage.paymentsForm.clickA();
     }
-    @Step("Переход на страницу между своими")
+    @Step("Переход на страницу между своими счетами")
     public void step2() {
         paymentsPage.paymentsPersonal.clickA();
     }

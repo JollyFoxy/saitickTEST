@@ -1,6 +1,7 @@
-package Tests.Pames;
+package Tests.Payments;
 
 import Tests.BaseTest;
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +26,7 @@ public class Test02 extends BaseTest {
     @Step("Открытие страницы \"Запрос платежа\"")
     private void step2(){
         paymentsPage.scrolling.scrollToObject();
-        paymentsPage.transitionRequest.clickA();
+        paymentsPage.menu.findBy(Condition.exactText("Request money")).click();
     }
     @Step("Ввод суммы")
     private void step3(String sum){
