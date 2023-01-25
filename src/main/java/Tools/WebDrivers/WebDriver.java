@@ -18,7 +18,7 @@ public class WebDriver implements WebDriverProvider {
     public org.openqa.selenium.WebDriver createDriver(@Nonnull Capabilities capabilities) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
-        options.addArguments("start-maximized");
+        options.addArguments("--start-maximized");
         options.merge(capabilities);
         options.setCapability(PAGE_LOAD_STRATEGY, "normal");
         WebDriverManager.chromedriver().setup();
